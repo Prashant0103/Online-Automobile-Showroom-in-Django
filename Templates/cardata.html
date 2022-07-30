@@ -1,0 +1,36 @@
+{% extends 'base.html' %} {% block title %}History{% endblock title %} {% block body %}
+{% if user.is_authenticated %}
+<div class="container">
+    <form action="/careport/" method="POST">
+        {% csrf_token %}
+        <h2>Database Status</h2>
+        status:{{msg}}
+        <br>
+        <button type="Sumbit">Show Data</button>
+        <h2>Customer Report</h2>
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th>Car Name</th>
+                <th>Company Name</th>
+                <th>Engine Power</th>
+                <th>Seating Capacity</th>
+                <th>Price</th>
+                <th>Image</th>
+            </tr>
+            {% for i in item %}
+            <tr>
+                {% for j in i %}
+                <td>{{j}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</div>
+{% else %}
+  <center>
+    <h4> Login To Continue... </h4>
+    <a class='navbar-link' href='/login' title='Click to go Login page'>Login</a>
+  </center>
+{% endif %}
+{% endblock body %}

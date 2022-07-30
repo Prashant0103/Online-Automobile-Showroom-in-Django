@@ -1,0 +1,79 @@
+{% extends 'base.html' %} {% block title %}Search{% endblock title %} {% block body %}
+{% if user.is_authenticated %}
+<div class="container my-3 ">
+<form action="/Car/" method="Post">
+    {% csrf_token %}
+    
+    <h2 class ="my-2 text-center"> Select From Cars Range</h2>
+    <h2 class ="my-2 text-center">---------------------------------</h2>
+    {% for i in data %}
+    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="10000">
+          <center><button type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#exampleModal" ><img src="{{i.image.url}}"  height="400"class="d-block w-99" alt="..."></button>
+            <div class="modal fade"
+            id="exampleModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+             
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                 
+                    <!-- Add image inside the body of modal -->
+                    <div class="modal-body">
+                        <img id="image" src="{{i.image.url}}"
+                            alt="Click on button" />
+                    </div>
+     
+                    <div class="modal-footer">
+                        <button type="button"
+                            class="btn btn-secondary"
+                            data-dismiss="modal">
+                            Close
+                    </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+          <h4>---------------------------------------------</h4>
+          <h4>Car Name : {{i.name.upper}}</h4>
+          <h4>Company : {{i.company.upper}}</h4>
+          <h4>Engine Power : {{i.engine}}</h4>
+          <h4>Type Of Vehicle : {{i.type.upper}}</h4>
+          <h4>Car Seat Capacity : {{i.seat_capacity}}</h4>
+          <h4>Car Price : {{i.price}}</h4>
+          <h4>---------------------------------------------</h4></center>
+          </div>
+      </div>
+    </div>
+  {% endfor %}
+</form>
+{% else %}
+  <center>
+    <h4> Login To Continue... </h4>
+    <a class='navbar-link' href='/login' title='Click to go Login page'>Login</a>
+  </center>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity=
+"sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+  crossorigin="anonymous">
+</script>
+<script src=
+"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity=
+"sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+  crossorigin="anonymous">
+</script>
+<script src=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity=
+"sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+  crossorigin="anonymous">
+</script>
+{% endif %}
+{% endblock body %}

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body %}
+
+{% if user.is_superuser %}
+    <h1 class="jumbotron my-3">YOU ARE NOT ALLOWED HERE</h1>
+{% else %}
+
+<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css'%}">
+    <script src="{% static 'jquery.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+<div class="container-fluid">
+    <div class="row">
+        <!-- left side menu -->
+        <div class="col-md-2 bg-dark py-5">
+            <nav class="navbar navbar-dark">
+                <a href="" class="navbar-brand">
+                <div class="text-center">
+                    {% if data.profile_pic %}
+                    <img src="/media/{{data.profile_pic}}" style="height:50px;width:50px;border-radius:50%">
+                    {% else %}
+                    <img src="{% static 'user.png' %}" style="height:50px;width:50px;border-radius:50%">
+                    {% endif %}
+                </div>
+                    <p>{{user.username}}</p>
+                </a>
+                
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="{% url 'cust_dashboard'%}" class="nav-link">View Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'edit_profile'%}" class="nav-link">Edit Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'change_password' %}" class="nav-link">Change Password</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'cart' %}" class="nav-link">My Booking</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'order_history' %}" class="nav-link">Order History</a>
+                    </li> 
+                        <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- right side menu -->
+        <div class="col-md-10">
+            {% block user_body %}
+
+            {% endblock user_body %}
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock body %}

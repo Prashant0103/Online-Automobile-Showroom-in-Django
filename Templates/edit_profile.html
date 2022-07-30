@@ -1,0 +1,52 @@
+{% extends "user_base.html" %}
+{% load static %}
+<style>
+    .bg-img{
+    background:url("/static/images/cover.jpg");
+}
+</style>
+{% block user_body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 bg-img py-5 text-center text-light">
+            <h1>Dashboard &gt; Edit Profile</h1>
+        </div>
+        <div class="col-md-6 mx-auto p-3 bg-light my-2">
+            <div class="text-center">
+                {% if data.profile_pic %}
+                <img src="/media/{{data.profile_pic}}" style="height:150px;width:150px;border-radius:50%">
+                {% else %}
+                <img src="{% static 'user.png' %}" style="height:150px;width:150px;border-radius:50%">
+                {% endif %}
+            </div>
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% if status %}
+                    <div class="alert alert-primary">{{status}}</div>
+                {% endif %}
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>First Name</label>
+                            <input type="text" class="form-control" name="fname" placeholder="Enter First Name" value="{{user.first_name}}">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Last Name</label>
+                            <input type="text" class="form-control" name="lname" placeholder="Enter Last Name" value="{{user.last_name}}">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Email</label>
+                            <input type="email" class="form-control" name="email" placeholder="Enter Name" value="{{user.email}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" name="changeprofile" value="Save Changes" class="btn btn-primary" style="width:50%;border-radius:20px;">
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock user_body %}

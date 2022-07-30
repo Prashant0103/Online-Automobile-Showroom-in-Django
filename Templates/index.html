@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+<center><div class="container-fliud my-4">
+  {% if messages %}
+    {% for i in messages %}   
+      <h6 > {{i}} </h6>
+      {% endfor %}
+  {% endif %}
+</div></center>
+
+<style>
+    th {
+        width: 30%;
+    }
+
+    .hover:hover {
+        box-shadow: 0px 0px 10px purple;
+        padding: 30px;
+    }
+</style>
+
+<center><h3><b>Welcome To Automobile-Showroom</h3></center>
+<center><h5><i>All about new cars in India under one roof</b></i></h5 ></center>
+  <i class='fas fa-address-book' style='font-size:36px'></i>
+
+  <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="10000">
+        <center><img src="/static/car-9294.png"  height="400"class="d-block w-99" alt="..."></center>
+
+      </div>
+      <div class="carousel-item" data-bs-interval="2000">
+        <center><img src="/static/car-9308.png"  height="400" class="d-block w-99" alt="..."></center>
+      </div>
+      <div class="carousel-item">
+        <center><img src="/static/3.png"  height="400" class="d-block w-99" alt="..."></center>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <form method='POST'>
+  <div style='background-color:Silver;' class="destinations" id="destinations">
+    <div class="container">
+      <div class="row">
+        <div class="col text-center">
+          <div class="section_subtitle">Amazing Cars</div>
+          <div class="section_title">
+            <h2>Under Best Value</h2>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+    <div class="row py-4">
+        {% for i in data %}
+        <div class="col-md-4 p-6">
+            <div style="border:1px solid gray" class="p-1 hover">
+                <img src="{{i.image.url}}" height="200" width="100%">
+                <h3 style="color:orange">
+                    <a href="{% url 'single_product' %}?pid={{i.id}}">{{i.name}}</a>
+                </h3>
+                {% if i.offer %}
+                <div class="spec_offer text-center"><a href="#">Special Offer 20% Discount</a></div>
+                {% endif %}
+                <h5>Company Name : {{i.cmp}}</h5>
+                <h5>Type Of Vehicle : {{i.category}}</h5>
+                <h5>Engine power : {{i.engine}}</h5>
+                <h5>Seat Capacity : {{i.seat_capacity}}</h5>
+                <h4>
+                    <span>{{i.price}} &#8377;</span>
+                </h4>
+                <h5><strong>{{i.type_of_vehicle}}</strong></h5>
+                <form action="{% url 'cart' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{i.id}}" name="pid">
+                    <input type="hidden" value="1" name="qty">
+                    {% if user.is_authenticated %}
+                    <button type="submit" class="btn btn-success btn-block">
+                                <i class="fa fa-shopping-cart"></i>
+                                Proceed to book
+                            </button>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+    </div>
+  </div>
+</form>
+  
+
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+<!--    <script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>-->
+    <script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+    <script src="{% static 'plugins/Isotope/isotope.pkgd.min.js' %}"></script>
+<!--    <script src="{% static 'plugins/scrollTo/jquery.scrollTo.min.js' %}"></script>-->
+<!--    <script src="{% static 'plugins/easing/easing.js' %}"></script>-->
+    <script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+{% endblock %}
+
+

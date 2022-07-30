@@ -1,0 +1,88 @@
+{% extends 'base.html' %} {% block title %}Car Registration{% endblock title %} {% block body %}
+{% if user.is_authenticated %}
+<html>
+
+<head>
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="form-group">
+        <form action="/insertion/" method="Post" enctype='multipart/form-data'>
+            {% csrf_token %} {{ form.media }} {{ form.as_p }}
+            <table>
+                <td>
+                    <table>
+                        <td>
+                            <tr>
+                                <td>Name : </td>
+                                <td><input type="text" name="nm" class="form-control" Required></td>
+                            </tr>
+                            <tr>
+                                <td>Company : </td>
+                                <td>
+                                <select name="cm" class="form-control">
+                                <option value="bmw">BMW</option>
+                                <option value="mercedes">Mercedes</option>
+                                <option value="maruti">Maruti</option>
+                                <option value="lamborghini">Lamborghini</option>
+                                <option value="honda">Honda</option>
+                                <option value="toyota">Toyota</option>
+                                <option value="mahindra">Mahindra</option>
+                                <option value="tata">Tata</option>
+                                <option value="skoda">Skoda</option>
+                                </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Type Of Car : </td>
+                                <td>
+                                <select name="type" class="form-control">
+                                <option value="coupe">Coupe</option>
+                                <option value="hatchback">Hatchback</option>
+                                <option value="sedan">Sedan</option>
+                                <option value="suv">SUV</option>
+                                <option value="sports">Sports Car</option>
+                                <option value="supercar">Supercar</option>
+                                <option value="van">Van</option>
+                                </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Engine : </td>
+                                <td><input type="number" name="en" class="form-control" Required></td>
+                            </tr>
+                            <tr>
+                                <td>Seating_Capacity : </td>
+                                <td><input type="number" name="sc" class="form-control" Required></td>
+                            </tr>
+                            <tr>
+                                <td>Price : </td>
+                                <td><input type="number" name="pc" class="form-control" Required></td>
+                            </tr>
+                            <tr>
+                                <td><label for="formFileSm" class="form-label">Upload Car Sample Image</label></td>
+                                <td><input name='image' class="form-control form-control-sm" id="formFileSm" type="file" /></td>
+                            </tr>
+                            <tr>
+                                <td><button type="submit" value="Add" class="btn btn-secondary">Add</button></td>
+                                <td></td>
+                            </tr>
+                        </td>
+                    </table>
+                    <td>
+                        <img src="/static/3.png" width='600' ,height="100">
+                    </td>
+                </td>
+            </table>
+        </form>
+    </div>
+    {% else %}
+    <center>
+      <h4> Login To Continue... </h4>
+      <a class='navbar-link' href='/login' title='Click to go Login page'>Login</a>
+    </center>
+    {% endif %}  
+</body>
+</html>
+{% endblock body %}

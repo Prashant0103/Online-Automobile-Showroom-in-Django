@@ -1,0 +1,76 @@
+{% extends 'base.html' %} {% block title %}Car Registration{% endblock title %} {% block body %}
+
+
+{% if user.is_superuser %}
+    <h1 class="jumbotron my-3">YOU ARE NOT ALLOWED HERE</h1>
+{% else %}
+
+<div id="contact">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-offset-2 col-md-8 col-sm-12">
+				<h2>Get in touch</h2>
+			</div>
+			<div class="container">
+				{% if messages %}
+					{% for i in messages %}
+						<center><div class="alert alert-{{i.tags}}"><h6> {{i}} </h6></div></center>
+					{% endfor %}
+				{% endif %}
+			</div>
+			<div class="col-md-8 col-sm-8 mt30">
+				<form method="Post" enctype='multipart/form-data'>
+					{% csrf_token %}
+					<table>
+						<tr>
+                        <td for="name"><br>NAME : </td>
+                        <td><br>{{fm.name}}</td>
+						</tr>
+
+						<tr>
+                      	<td for="email"><br>EMAIL : </td>
+                    	<td><br>{{fm.email}}
+						</tr>
+
+						<tr>
+						<td for="message">MESSAGE : </td>
+						<td><br>{{fm.msg}}</td>
+						<tr>
+                    	
+				</table>
+				<center><button type="submit" name="submit" class="btn btn-primary">Submit</button></center>
+				</form>
+
+			</div>
+		</div>
+		<div class="col-md-4 col-sm-4 address">
+			<div>
+				<h3>Email</h3>
+				<p>dummy@gmail.com</p>
+			</div>
+			<div>
+				<h3>Phones</h3>
+				<p>+91 8585858585</p>
+			</div>
+		</div>
+		<div class="col-md-12 col-sm-12 mt20">
+			<h3>------------</h3>
+			<div class="google_map mt20">
+			<div id="map-canvas"></div>
+		</div>
+	</div>
+</div>		
+
+<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-5 col-sm-4">
+			<a class="navbar-brand">AS</a>
+				<p>Automobile Showroom </p>
+			</div>
+		</div>
+	</div>
+</footer>
+</html>
+{% endif %}
+{% endblock body %}

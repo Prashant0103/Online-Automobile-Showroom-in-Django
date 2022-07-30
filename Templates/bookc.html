@@ -1,0 +1,31 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title%}
+{% block body %}
+<style>
+  .button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+</style>
+
+<center><div class="container-fliud my-4">
+  {% if messages %}
+    {% for i in messages %}
+      <h6 > {{i}} </h6>
+      {% endfor %}
+  {% endif %}
+</div></center>
+<center><h3><b>Welcome To Automobile-Showroom</h3></center>
+<center><h5><i>All about new cars in India under one roof<b></i></h5 ></center>
+<h1>{{user.name}}</h1>
+
+{% endblock %}

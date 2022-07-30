@@ -1,0 +1,61 @@
+{% extends "base.html" %} {% load static %} {% block head %}
+<style>
+    th {
+        width: 30%;
+    }
+    
+    .hover:hover {
+        box-shadow: 0px 0px 10px black;
+        padding: 30px;
+    }
+</style>
+{% endblock %}
+{% block body %}
+<div class="container-fluid" style="background:url('/static/3.png');background-size:100% 100%;">
+    <div class="row py-5" style="background:rgba(0,0,0,0.5)">
+        <div class="col-md-12 py-5 my-5 text-light text-center font-weight-bold text-uppercase">
+            {%if abcd %}
+            <h1>total ({{data|length}}) products found</h1>
+            {% else %}
+            <h1>All Products ({{data|length}})</h1>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row py-4">
+        {% for i in data %}
+        <div class="col-md-4 p-5">
+            <div style="border:1px solid gray" class="p-1 hover">
+                <img src="{{i.image.url}}" height="200" width="100%">
+                <h3 style="color:orange">
+                    <a href="{% url 'single_product' %}?pid={{i.id}}">{{i.name}}</a>
+                </h3>
+                {% if i.offer %}
+                <div class="spec_offer text-center"><a href="#">Special Offer 20% Discount</a></div>
+                {% endif %}
+                <h5>Company Name : {{i.cmp}}</h5>
+                <h5>Type Of Vehicle : {{i.category}}</h5>
+                <h5>Engine power : {{i.engine}}</h5>
+                <h5>Seat Capacity : {{i.seat_capacity}}</h5>
+                <h4>
+                    <span>{{i.price}} &#8377;</span>
+                </h4>
+                <h5><strong>{{i.type_of_vehicle}}</strong></h5>
+                <form action="{% url 'cart' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{i.id}}" name="pid">
+                    <input type="hidden" value="1" name="qty">
+                    {% if user.is_authenticated %}
+                    <button type="submit" class="btn btn-success btn-block">
+                                <i class="fa fa-shopping-cart"></i>
+                                Add To Cart
+                            </button>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

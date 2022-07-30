@@ -1,0 +1,66 @@
+{% extends 'base.html' %} {% block title %}Car Registration{% endblock title %} {% block body %}
+{% if user.is_authenticated %}
+<html>
+
+<head>
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="form-group">
+        <form method="Post" enctype='multipart/form-data'>
+            {% csrf_token %}
+            <table>
+                <td>
+                    <table>
+                        <td>
+                            <tr>
+                                <td>Name : </td>
+                                <td>{{ cform.name }}</td>
+                            </tr>
+                            <tr>
+                                <td>Company : </td>
+                                <td>{{ cform.company }}</td>
+                            </tr>
+                            <tr>
+                                <td>Type Of Car : </td>
+                                <td>{{ cform.type }}</td>
+                            </tr>
+                            <tr>
+                                <td>Engine : </td>
+                                <td>{{ cform.engine }}</td>
+                            </tr>
+                            <tr>
+                                <td>Seating_Capacity : </td>
+                                <td>{{ cform.seat_capacity }}</td>
+                            </tr>
+                            <tr>
+                                <td>Price : </td>
+                                <td>{{ cform.price }}</td>
+                            </tr>
+                            <tr>
+                                <td><label for="formFileSm" class="form-label" accept="image/png" >Upload Car Sample Image</label></td>
+                                <td>{{form.image}}</td>
+                            </tr>
+                            <tr>
+                                <td><button type="submit" value="Add" class="btn btn-secondary">Add</button></td>
+                                <td></td>
+                            </tr>
+                        </td>
+                    </table>
+                    <td>
+                        <img src="/static/3.png" width='600' ,height="100">
+                    </td>
+                </td>
+            </table>
+        </form>
+    </div>
+    {% else %}
+    <center>
+      <h4> Login To Continue... </h4>
+      <a class='navbar-link' href='/login' title='Click to go Login page'>Login</a>
+    </center>
+    {% endif %}  
+</body>
+</html>
+{% endblock body %}

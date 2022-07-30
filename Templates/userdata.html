@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}History{% endblock title %}
+{% block body %}
+<div class="container">
+<form action="/usereport/" method="Post">
+{% csrf_token %}
+<h2>Database Status</h2>
+    status:{{status}}
+<br>
+<button type="Sumbit">Show Data</button>
+<h2>Customer Report</h2>
+        <table class = "table table-bordered table-hover">
+            <tr>
+                <th>Person Id</th> 
+                <th>Name</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Age</th>
+                <th>City</th>
+            </tr>
+            {% for i in list %}
+            <tr>
+                {% for j in i %}
+                <td>{{j}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</div>
+{% endblock body %}

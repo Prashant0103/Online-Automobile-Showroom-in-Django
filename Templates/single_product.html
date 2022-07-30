@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head %}
+<style>
+    th{
+    width:30%;
+}
+</style>
+{% endblock %}
+{% block body %}
+    <div class="container-fluid" style="background:url('/static/images/c1.jpg');background-size:100% 100%;">
+        <div class="row py-5" style="background:rgba(0,0,0,0.5)">
+            <center><h1 style="color:white;font:Times New Roman">Product Details</h1><center>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row py-4">
+            <div class="col-md-8 ">
+                <div class=" text-center py-4">
+                    <img src="{{product.image.url}}" alt="No Image" style="height:300px;width:80%;">
+                </div>
+                <table class="table">
+                    <tbody>
+                    
+                        <tr>
+                            <th><center>PRODUCT ID</th>
+                            <td>{{product.id}}</center></td>
+                        </tr>
+                    
+                        <tr>
+                            <th><center>PRODUCT NAME</th>
+                            <td>{{product.name}}</center></td>
+                        </tr>
+                        <tr>
+                            <th><center> Market Price</th>
+                            <td><del>&#8377;{{product.price}}</center></del></td>
+                        </tr>
+                        <tr>
+                            <th><center>Category ID</th>
+                            <td>{{product.category.id}}</center></td>
+                        </tr>
+                        <tr>
+                            <th><center>Category Name</th>
+                            <td>{{product.category.type_of_vehicle}}</center></td>
+                        </tr>
+                        <tr>
+                            {% if i.offer %}
+                            <th> On Offer</th>
+                            <div class="spec_offer text-center"><a href="#">Special Offer 20% Discount</a></div>
+                            {% endif %}
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+                
+                    
+                    {% comment %} <tr>
+                        <th>Category Description</th>
+                        <td>
+                            {{product.product_category.description}}
+                        </td>
+                    </tr> {% endcomment %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

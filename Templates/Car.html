@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block title %}All Cars{% endblock title %}
+{% block body %}
+<div class="container">
+<form action="/CarReg/" method="Post">
+{% csrf_token %}
+<h2 class = "text-center">CARS</h2>
+<div class="row">
+  <div class="col">
+    <div class="p-3 border bg-light">
+    <img src="/static/bmw2.jfif" class="d-block w-20" alt="...">
+    <p>BMW X5 is a German multinational corporate manufacturer of luxury vehicles and motorcycles</p>
+    <p>Engine-2993 to 2998 cc</p>
+    <p>Seating Capacity - 5 Seater</p>
+    <p>Comapny - BMW</p>
+    <p>Fuel type - Diesel and Petrol</P>
+    <p>Price - 76.50 Lakh</P>
+    <p>Car type - SUV</p>
+    <button type="Sumbit">Book</button>
+    </div>
+  </div>
+  <div class="col">
+    <div class="p-3 border bg-light">
+    <img src="/static/GLA.jfif" class="d-block w-20" alt="...">
+    <p>Mercedes-Benz GLA is a Mercedes-Benz GLA 200 is the petrol variant in the GLA lineup </p>
+    <p>Engine-1332 cc</p>
+    <p>Seating Capacity - 5 Seater </p>
+    <p>Comapny - Mercedes-Benz</p>
+    <p>Fuel type - Petrol</P>
+    <p>Price - 43.60 Lakh</P>
+    <p>Car type - SUV</p>
+    <button type="Sumbit">Book</button>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="p-3 border bg-light">
+    <img src="/static/Swift.jfif" class="d-block w-20" alt="...">
+    <p>Maruti Suzuki 2021 Swift is available in 9 exciting colours </p>
+    <p>Engine - 1197 cc</p>
+    <p>Seating Capacity - 5 Seater </p>
+    <p>Comapny - Maruti Swift</p>
+    <p>Fuel type - Petrol</P>
+    <p>Price - 5.85 Lakh</P>
+    <p>Car type - Hatchback</p>
+    <button type="Sumbit">Book</button>
+    </div>
+  </div>
+  <div class="col">
+    <div class="p-3 border bg-light">
+    <img src="/static/Avt2.jfif" class="d-block w-20" alt="...">
+    <p>The Aventador advances every concept of performance, immediately establishing itself as the benchmark for the super sports car sector</p>
+    <p>Engine- 6498 cc</p>
+    <p>Seating Capacity - 2 Seater</p>
+    <p>Comapny - Lamborghini</p>
+    <p>Fuel type - Petrol</P>
+    <p>Price - 6.52 crore</P>
+    <p>Car type - super sports</p>
+    <button type="Sumbit">Book</button>
+    </div>
+  </div>
+</div>
+<div class="row">
+    <div class="col">
+    <div class="p-3 border bg-light">
+    <img src="/static/van.jfif" class="d-block w-20" alt="...">
+    <p>The Toyota Camry Self-Charging Hybrid Electric Vehicle comes with our latest 4th generation self-charging hybrid electric engine </p>
+    <p>Engine - 2487 cc</p>
+    <p>Seating Capacity - 5 Seater </p>
+    <p>Comapny - Toyota</p>
+    <p>Fuel type - Petrol</P>
+    <p>Price - 17.18 Lakh</P>
+    <p>Car type - Van</p>
+    <button type="Sumbit">Book</button>
+    </div>
+    </div>
+  <div class="col">
+    <div class="p-3 border bg-light">
+    <img src="/static/Jazz.jfif" class="d-block w-20" alt="...">
+    <p>Honda Jazz</p>
+    <p>Engine - 1199 cc</p>
+    <p>Seating Capacity - 5 Seater </p>
+    <p>Comapny - Toyota</p>
+    <p>Fuel type - Petrol</P>
+    <p>Price - 70.75 Lakh</P>
+    <p>Car type - Hatchback</p>
+    <button type="Sumbit">Book</button>
+    </div>
+  </div>
+</div>
+{% endblock body%}
